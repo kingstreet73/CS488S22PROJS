@@ -4,7 +4,7 @@ import time #https://stackoverflow.com/questions/1557571/how-do-i-get-time-of-a-
 #VERSION 321091029301230129 COMPLETE, SIMPLIFIED REDO WITH NO SERVER, NO MODULES/FUNCTIONS, ONLY FOR AUTOGRADER
 #UPDATE: THIS VERSION WORKS FOR TASKS 1-3, BUT, REALIZED I TOOK OUT MY MAIN EXECUTOR FOR THE MODULAR DESIGN, SO PROBABLY GO BACK TO THAT IF THIS DOESNT WORK WITH SERVER
 #Create and confirm 3 arguments we want passed in - hostname, port, time
-if (len(sys.argv == 3)):
+if (len(sys.argv) == 3):
     flag = str(sys.argv[1])
     port = int(sys.argv[2])
     if((port < 1024) or (port > 65535)):

@@ -54,7 +54,7 @@ if len(args) == 3:
     client_Socket.connect((server_Hostname,server_Port))
     #calc run time and bytes sent- close connection when done
     init_Time = time.time()
-    while time.time() - init_Time < server_SetTime:
+    while time.time() - init_Time < server_Time:
         client_Socket.sendall(init_Chunk)
         counter += 1
     iperf_runtime = time.time() - init_Time

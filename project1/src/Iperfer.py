@@ -26,7 +26,7 @@ except OSError:
 
 #confirm server_Port is in range
    
-server_Port = int(server_Port)
+
 if server_Port < min_Port or server_Port > max_Port:
     print("Error: port number must be in the range {} to {}").format(min_Port, max_Port)
     exit()

@@ -15,8 +15,8 @@ if len(sys.argv) !=3:
         exit()
 
 server_Hostname = sys.argv[0]
-server_Port = int(sys.argv[1])
-server_Time = int(sys.argv[2])
+server_Port = sys.argv[1]
+server_Time = sys.argv[2]
 
 #confirm server_Hostname is real
 try:
@@ -57,6 +57,7 @@ iperf_runtime = time.time() - init_Time
 client_Socket.close
 #calc rate
 send_Rate = (counter * 8 / 1000) / iperf_runtime
+
 print("sent={} KB rate={} Mbps".format(counter, send_Rate))
 exit()
    

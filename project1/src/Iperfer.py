@@ -1,9 +1,14 @@
+
+import struct
+import fcntl
 import socket
 import sys
 import time #https://stackoverflow.com/questions/1557571/how-do-i-get-time-of-a-python-programs-execution
 #VERSION 321091029301230129 COMPLETE, SIMPLIFIED REDO WITH NO SERVER, NO MODULES/FUNCTIONS, ONLY FOR AUTOGRADER
 #UPDATE: THIS VERSION WORKS FOR TASKS 1-3, BUT, REALIZED I TOOK OUT MY MAIN EXECUTOR FOR THE MODULAR DESIGN, SO PROBABLY GO BACK TO THAT IF THIS DOESNT WORK WITH SERVER
 #Create and confirm 3 arguments we want passed in - hostname, port, time
+
+
 
 if (len(sys.argv) != 4) and (len(sys.argv) != 3):
     print("Error: missing or additional arguments")
@@ -16,12 +21,21 @@ if (len(sys.argv) == 3):
         if((port < 1024) or (port > 65535)):
             print("Error: port number must be in the range 1024 to 65535")
             exit()
+        def IP(ifname):
+            s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+            return socket.inet_ntoa(fcntl.ioctl(
+            s.fileno(),
+            0x8915,
+            struct.pack('256s', bytes(ifname[:15], 'utf-8'))
+        )[20:24])
         data_sum = 0
+        hostnumber = input()
+        host_name = IP(hostnumber+'-eth0')
         init_Chunk = bytearray(1000)
         #create server socket
         server_Socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         #bind port with socket
-        server_Socket.bind(port)
+        server_Socket.bind(host_name, port)
         #wait for 1 minimum client
         server_Socket.listen(1)
         #create connection socket

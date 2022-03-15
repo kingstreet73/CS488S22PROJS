@@ -17,12 +17,11 @@ if (len(sys.argv) == 3):
             print("Error: port number must be in the range 1024 to 65535")
             exit()
         data_sum = 0
-        hostconnect = input()
         init_Chunk = bytearray(1000)
         #create server socket
         server_Socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         #bind port with socket
-        server_Socket.bind((hostconnect, port))
+        server_Socket.bind(port)
         #wait for 1 minimum client
         server_Socket.listen(1)
         #create connection socket
